@@ -1,0 +1,27 @@
+name: PhoenixGBA
+options:
+  bundleIdPrefix: com.example
+  deploymentTarget: { iOS: "15.0" }
+targets:
+  PhoenixGBA:
+    type: application
+    platform: iOS
+    sources: [App/Sources]
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.example.phoenixgba   # change to your own
+        SWIFT_OBJC_BRIDGING_HEADER: App/Sources/PhoenixGBA-Bridging-Header.h
+        HEADER_SEARCH_PATHS: ["$(SRCROOT)/third_party/mgba/include", "$(SRCROOT)/build/mgba-ios/include"]
+        LIBRARY_SEARCH_PATHS: ["$(SRCROOT)/build/mgba-ios"]
+        OTHER_LDFLAGS: ["-lmgba", "-lz"]
+        GCC_PREPROCESSOR_DEFINITIONS: ["M_CORE_GBA=1"]
+        CLANG_CXX_LANGUAGE_STANDARD: gnu++17
+    info:
+      path: App/Info.plist
+      properties:
+        CFBundleDisplayName: Phoenix GBA
+        UILaunchScreen: {}
+        UISupportsDocumentBrowser: false
+        UIFileSharingEnabled: true
+        LSSupportsOpeningDocumentsInPlace: true
+        UISupportedInterfaceOrientations: [UIInterfaceOrientationPortrait, UIInterfaceOrientationLandscapeLeft, UIInterfaceOrientationLandscapeRight]
